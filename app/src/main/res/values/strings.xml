@@ -1,0 +1,4 @@
+<resources>
+    <string name="app_name">Shared Preferences App</string>
+    <string name="hint_type_me">type me</string>
+</resources>
