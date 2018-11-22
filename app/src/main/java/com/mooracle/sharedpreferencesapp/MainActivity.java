@@ -8,6 +8,7 @@ import android.widget.EditText;
 
 public class MainActivity extends AppCompatActivity {
     private static final String PREFS_FILE = "com.mooracle.sharedpreferencesapp.preferences";
+    private static final String KEY_EDITTEXT = "key_editText";
     private EditText mEditText;
     private SharedPreferences mSharedPreferences;
     private SharedPreferences.Editor mEditor;
@@ -20,5 +21,14 @@ public class MainActivity extends AppCompatActivity {
         mEditText = findViewById(R.id.editText);
         mSharedPreferences = getSharedPreferences(PREFS_FILE, Context.MODE_PRIVATE);
         mEditor = mSharedPreferences.edit();
+        String editTextString = mSharedPreferences.getString(KEY_EDITTEXT, "");
+        mEditText.setText(editTextString);
+    }
+
+    @Override
+    protected void onPause() {
+        super.onPause();
+        mEditor.putString(KEY_EDITTEXT, mEditText.getText().toString());
+        mEditor.apply();
     }
 }
